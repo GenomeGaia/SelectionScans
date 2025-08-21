@@ -1,0 +1,1 @@
+chr	start	end	avg_pos	score	population	test	ensembl	gene	distance	topgene	quantile_rank	max_quantile_rank_xpehh	HMP	log10_HMP	FCS_X2	FCS	log10_FCS	Chromosome	Start	End	SprimePopulation	TractID	NumSprimeSites	TractFreq	MinAF	MaxAF	OverlappingGenes
