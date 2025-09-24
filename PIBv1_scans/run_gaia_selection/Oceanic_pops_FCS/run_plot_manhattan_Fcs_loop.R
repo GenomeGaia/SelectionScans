@@ -1,5 +1,8 @@
-##############################################
-#     DATA OCEANIA - manhattan plot | FCS
+######################################################
+#         DATA OCEANIA - manhattan plot | FCS
+# script adapted from:
+# https://r-graph-gallery.com/101_Manhattan_plot.html
+######################################################
 
 library(qqman)
 library(tidyverse)
