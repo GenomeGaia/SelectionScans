@@ -137,6 +137,7 @@ Stage 3 (FCS):
 1. `Oceanic_pops_FCS/run_final-stats_HMP_pbs-xpehh_2024.sh`
 2. `Oceanic_pops_FCS/run_FCS.sh`
 3. `Oceanic_pops_FCS/run_plot_manhattan_Fcs_loop.sh`
+4. `Oceanic_pops_FCS/run_merged-windows_10kb_HEATMAP.R`
 
 > [!WARNING]
 > Making the final Manhattan plots may take a long time, since each plot is generated sequentially, and there
