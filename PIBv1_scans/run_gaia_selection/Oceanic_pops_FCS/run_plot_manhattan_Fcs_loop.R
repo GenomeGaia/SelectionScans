@@ -1,5 +1,5 @@
 ######################################################
-#         DATA OCEANIA - manhattan plot | FCS
+#         PIBv1_manuscript - manhattan plot | FCS
 # script adapted from:
 # https://r-graph-gallery.com/101_Manhattan_plot.html
 ######################################################
@@ -9,7 +9,6 @@ library(tidyverse)
 library(data.table)
 library(ggrepel)
 library(ggnewscale)
-
 
 
 pattern1 <- "FCS.tsv"
@@ -23,7 +22,7 @@ temp2 <- list.files(pattern = pattern2, full.names = TRUE)
 data_list <- list()
 data_list2 <- list()
 
-# Loop 
+# Process the data for the manhattan plot 
 for (i in 1:length(temp)) {
   
   name <- gsub(pattern = ".tsv", "_manhattan", basename(temp[i]))
@@ -90,20 +89,16 @@ for (i in 1:length(temp)) {
     filter(!is.na(arch)) %>%
     mutate(bold = gene %in% bold_genes$gene)
 
-
   # Adjust size based on whether the gene is in bold or not
   top_max_log_FCS_filtered$label_size <- ifelse(top_max_log_FCS_filtered$bold, 4, 2)
-
 
   don <- don %>%
     left_join(top_max_log_FCS %>% select(arch, gene), by = c("arch", "gene")) %>%
     mutate(top_max = ifelse(gene %in% top_max_log_FCS$gene, gene, NA_character_)) 
 
-
-
-  ###########################
-  # PLOT
-  ###########################
+  ######################################################
+    # Manhattan plot 
+  ######################################################
   xpehh_plot <- ggplot(don, aes(x = BPcum, y = log10_FCS)) +
     geom_point(aes(color = as.factor(chr)), 
                size = 0.2, 
