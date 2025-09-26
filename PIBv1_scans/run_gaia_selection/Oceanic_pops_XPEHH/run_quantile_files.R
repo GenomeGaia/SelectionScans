@@ -1,10 +1,8 @@
-##############################################
-#     DATA OCEANIA - PBS ALL CHR
+######################################################
+#     PIBv1_manuscript - XPEHH, get quantiles 
+######################################################
 
-library(qqman)
-library(tidyverse)
 library(data.table)
-library(ggrepel)
 
 temp <- list.files(pattern="*final.tsv", full.names=TRUE)
 
@@ -24,7 +22,6 @@ for(i in 1:length(temp)){
 
   write.table(df[df$score>q_0.05,], file = paste0(name, "_0.05.tsv"),
               quote=FALSE, sep="\t", row.names = FALSE)
-
 
   write.table(df[df$score>q_0.01,], file = paste0(name, "_0.01.tsv"),
               quote=FALSE, sep="\t", row.names = FALSE)
