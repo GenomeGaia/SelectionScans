@@ -2,10 +2,7 @@
 #     PIBv1_manuscript - PBS, get quantiles 
 ######################################################
 
-library(qqman)
-library(tidyverse)
 library(data.table)
-library(ggrepel)
 
 temp <- list.files(pattern="*final.tsv", full.names=TRUE)
 
