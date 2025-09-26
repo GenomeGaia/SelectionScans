@@ -1,5 +1,6 @@
-##############################################
-#     DATA OCEANIA - Fisher's combine score (FCS)
+########################################################
+    # PIBv1_manuscript - Fisher's combine score (FCS)
+########################################################
 
 library(qqman)
 library(tidyverse)
