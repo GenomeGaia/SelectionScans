@@ -97,7 +97,8 @@ filtered_key_genes_10kb_list
 
 ##################################################
  	 # IMPORTANT 
-  # Get the merged windows for the other populations 
+# Get the respective merged-windows for the other 
+# populations directly from the FCS output
 ##################################################
 
 temp2 <- list.files(pattern = "*FCS.tsv", full.names = TRUE)
@@ -259,7 +260,7 @@ gene_labels_df <- merged_df2 %>%
 
 # Heatmap plot 
 
-heatmap_plot2 <- ggplot(merged_df2, aes(
+heatmap_plot <- ggplot(merged_df2, aes(
   x = population, 
   y = factor(new_coordinates2, levels = rev(unique(new_coordinates2))), 
   fill = ifelse(!!rlang::sym("p0.01_true"), as.character(p_val), "non_arch")
@@ -293,7 +294,7 @@ heatmap_plot2 <- ggplot(merged_df2, aes(
   ) 
 
 # Organize the gene labels on the right side
-heatmap_plot2 <- heatmap_plot2 +
+heatmap_plot <- heatmap_plot +
   geom_tile(color = "black", size = 0.1) +  
   geom_text(
     data = gene_labels_df,
@@ -305,6 +306,11 @@ heatmap_plot2 <- heatmap_plot2 +
     size = 1,
   )
 
-heatmap_plot2
+heatmap_plot
 
-ggsave("merged-windows2_heatmap_Denisovan_AllPops_arch.pdf", heatmap_plot2, width = 5.5, height = 2, dpi = 300, limitsize = FALSE)
+ggsave("merged-windows2_heatmap_Denisovan_AllPops_arch.pdf", 
+       heatmap_plot, 
+       width = 5.5, 
+       height = 2, 
+       dpi = 300, 
+       limitsize = FALSE)
