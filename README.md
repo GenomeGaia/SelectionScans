@@ -2,7 +2,7 @@
 
 ## Contributions
 
-Primary script and pipeline author: Daniela Tejada Martinez, PhD (@dtejadam)
+Primary script and pipeline author: Daniela Tejada Martinez, PhD (@genomegaia)
 
 ## Introduction
 
