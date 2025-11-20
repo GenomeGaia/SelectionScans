@@ -1,6 +1,6 @@
 # Selection and adaptive introgression scans for the PIBv1 manuscript
 
-## Scripts and analyses by Daniela Tejada Martinez, PhD (@dtejadam)
+## Scripts and analyses by Daniela Tejada Martinez, PhD (@GenomeGaia)
 
 ## Background
 
