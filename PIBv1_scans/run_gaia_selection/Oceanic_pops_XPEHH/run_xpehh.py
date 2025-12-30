@@ -33,12 +33,9 @@ def run_vcf_file(vcf_filename, map_filename, pop1_filename):
     #Genotype Array
     gt_pop1 = allel.GenotypeArray(callset_pop1['calldata/GT'])
     gt_pop2 = allel.GenotypeArray(callset_pop2['calldata/GT'])
-    # n_variants, n_haplotypes
-    gt_h1 = gt_pop1.haploidify_samples()
-    gt_h2 = gt_pop2.haploidify_samples()
-    # haplotypes array 
-    h1 = allel.HaplotypeArray(gt_h1, dtype='i1')
-    h2 = allel.HaplotypeArray(gt_h2, dtype='i1')
+    # haplotypes array
+    h1 = gt_pop1.to_haplotypes()
+    h2 = gt_pop2.to_haplotypes()
     # 
     chr = callset_pop1['variants/CHROM']
     pos = callset_pop1['variants/POS']
@@ -53,13 +50,13 @@ def run_vcf_file(vcf_filename, map_filename, pop1_filename):
     #with np.errstate(divide='ignore'):
     xp = allel.xpehh(h1, h2, pos, map_pos=map_pos, min_ehh=0.05, include_edges=False, gap_scale=20000, max_gap=200000, is_accessible=None, use_threads=True)
     #
-    xp[~np.isfinite(xp)] = np.nan    
+    xp[~np.isfinite(xp)] = np.nan
     #
-    score = allel.standardize(xp)
+    #score = allel.standardize(xp)
     #
     tag_chr = '_'.join(pathlib.Path(vcf_filename).name.split('_')[:2])
     tag_pop1 = re.findall(r"pop1_(.*?)\.",pop1_filename)[0]
-    df=pd.DataFrame({"#chr":chr,"start":pos-1,"end":pos,"avg_pos":pos,"score":score})
+    df=pd.DataFrame({"#chr":chr,"start":pos-1,"end":pos,"avg_pos":pos,"score":xp})
     df["population"]=re.findall("pop1_([^_.]*).txt", pop1_filename)[0]
     df["test"]="xpehh" # CHANGE THE THEST HERE
     df.to_csv(f"{tag_chr}_{tag_pop1}_xpehh.tsv", sep='\t', index=False)

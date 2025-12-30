@@ -10,6 +10,8 @@ library(data.table)
 library(ggrepel)
 library(ggnewscale)
 library(ragg)
+library(extrafont)
+loadfonts(device = "postscript", quiet = TRUE)
 
 pattern1 <- "FCS.tsv"
 pattern2 <- "_0.01_introgressed_corehaps_uniquePOP.tsv"
@@ -127,9 +129,10 @@ for (i in 1:length(temp)) {
     ylab(expression(paste("-log"[10], " (", italic("p")["FCS"], ")")))+
     xlab("Chromosomes") +
     ggtitle(paste0(name_plot)) +
-    theme_classic()+
-    theme(
-      text = element_text(size = 10)) +
+    theme_classic(base_family = "Droid Sans")+
+    theme(text = element_text(family = "Droid Sans", face = "bold", size = 10),
+      axis.text = element_text(face = "bold", color = "black"),
+      axis.title = element_text(face = "bold")) +
   
     # threshold
     geom_hline(yintercept = 2, linetype = "dashed", color = "red", linewidth = 0.15) +
@@ -142,6 +145,7 @@ for (i in 1:length(temp)) {
      # aes(label = gene, fontface = 'bold', fill = arch),
      # aes(label = gene, fontface = ifelse(bold, 'bold', 'plain'), fill = arch, size = label_size),
       aes(label = gene, fontface = ifelse(bold, 'bold', 'plain'), fill = arch),
+      family = "Droid Sans", #
       alpha = 0.8, 
       box.padding = 0.2,
       hjust = 0.6, 
@@ -165,7 +169,7 @@ for (i in 1:length(temp)) {
     theme(legend.position = "none")  # Remove the legend
   
 
-  ggsave(paste0(name,".pdf"), xpehh_plot, width = 10, height = 3)
+  #ggsave(paste0(name,".pdf"), xpehh_plot, width = 10, height = 3)
  
   ggsave(paste0(name,".png"), xpehh_plot, width = 10,  height = 3, dpi = 300, type = "cairo")
 
